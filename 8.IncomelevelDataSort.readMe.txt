@@ -1,0 +1,20 @@
+Data is 'zipCateJoinedData.txt' in '/home/wl1622/project/yelp/code/incomeLevel'
+
+javac -classpath `yarn classpath` -d . IncomeCateMapper.java
+javac -classpath `yarn classpath` -d . IncomeCateReducer.java
+javac -classpath `yarn classpath`:. -d . IncomeCateDriver.java
+
+jar -cvf IncomeCate.jar *.class
+
+hdfs dfs -ls ./project
+
+hdfs dfs -mkdir ./project/zipCategory
+//////////////////////////////////////////
+hdfs dfs -rm -r ./project/output
+
+hadoop jar IncomeCate.jar IncomeCateDriver ./project/zipCateJoinedData.txt ./project/output
+hdfs dfs -cat ./project/output/part-r-00000
+
+hdfs dfs -ls ./project/zipCategory/output
+
+hadoop fs -get ./project/output/part-r-00000  

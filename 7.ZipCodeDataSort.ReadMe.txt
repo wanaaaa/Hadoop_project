@@ -1,0 +1,22 @@
+Data is 'business.json' in '/home/wl1622/project/yelp/dataset'
+
+javac -classpath `yarn classpath` -d . ZipCategoryMapper.java
+javac -classpath `yarn classpath` -d . ZipCategoryReducer.java
+javac -classpath `yarn classpath`:. -d . ZipCategoryDriver.java
+
+jar -cvf ZipCategory.jar *.class
+
+hdfs dfs -ls ./project
+
+hdfs dfs -mkdir ./project/zipCategory
+//////////////////////////////////////////
+hdfs dfs -rm -r ./project/zipCategory/output
+
+hadoop jar ZipCategory.jar ZipCategoryDriver ./project/business.json ./project/zipCategory/output
+hdfs dfs -cat ./project/zipCategory/output/part-r-00000
+
+hdfs dfs -ls ./project/zipCategory/output
+
+hadoop fs -get ./project/zipCategory/output/part-r-00000  
+//////////////////////
+hadoop jar ZipCategory.jar ZipCategoryDriver -D mapred.textoutputformat.separator="," ./project/businessPart.json ./project/zipCategory/output

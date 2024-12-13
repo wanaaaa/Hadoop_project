@@ -1,0 +1,7 @@
+First , use data base wl1622;
+All data is in dumbo  '/home/wl1622/project/yelp/code/hiveTest'
+
+Line 1~4 -> just run. Table is in the database.
+Line 7~10 -> use 'zipTransposedData.txt' in /home/wl1622/project/yelp/code/hiveTest
+Line 12~13-> just run. Table is in the database.
+

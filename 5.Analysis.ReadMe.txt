@@ -1,0 +1,7 @@
+First , use data base wl1622;
+
+Line 1~22 -> just run. Table is in the database.
+Line 26~29 -> use zipCityStateLoLa.txt in /home/wl1622/project/yelp/code/hiveTest
+Line 32~51 -> just run. Table is in the database.
+Line 56~60 -> use incomeLevelCategorySortedResult.txt in /home/wl1622/project/yelp/code/hiveTest
+Line 62~121 -> just run. Table is in the database.

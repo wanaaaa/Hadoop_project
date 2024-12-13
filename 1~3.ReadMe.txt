@@ -1,0 +1,46 @@
+Final Readme File: Describe your directories and files, how to build your code, how to run your code, where to find results of a run.
+
+
+List of data and library files
+	- business.json (https://www.yelp.com/dataset/download)
+	- review.json (https://www.yelp.com/dataset/download)
+	- 15zpallnoagi.csv (https://www.irs.gov/statistics/soi-tax-stats-individual-income-tax-statistics-2015-zip-code-data-soi)
+	- json-serde-1.3.8-jar-with-dependencies.jar (http://www.congiu.net/hive-json-serde/1.3.8/cdh5/)
+
+List of folders 
+	1. zipcode_IRS
+	2. business
+	3. review
+
+1. For zipcode_IRS.pig in zipcode_IRS directory
+$ hdfs dfs -mkdir irsInput
+$ hdfs dfs -put 15zpallnoagi.csv /user/<nyu_id>/irsInput
+$ pig zipcode_IRS.pig
+$ hadoop fs -copyToLocal /user/<nyu_id>/irsInput/output/part-r-00000 average_income.txt
+$ head -20 average_income.txt -- Show first 20 rows
+
+2. For business.hql in business directory
+$ hdfs dfs -mkdir yelpInput
+$ hdfs dfs -mkdir yelp
+$ hdfs dfs -put business.json yelpInput
+$ hdfs dfs -put business.json yelp
+$ hdfs dfs -put json-serde-1.3.8-jar-with-dependencies.jar yelpInput
+
+$ beeline
+$ beeline> !connect jdbc:hive2://babar.es.its.nyu.edu:10000/after
+$ hive> <nyu_id>
+$ hive> <password>
+$ hive> use <nyu_id>;
+$ hive> ADD JAR hdfs://babar.es.its.nyu.edu:8020/user/<nyu_id>/yelpInput/json-serde-1.3.8-jar-with-dependencies.jar;
+
+Follow a step-by-step insturction in business.hql
+
+
+3. For review.hql in business directory
+$ hdfs dfs -mkdir yelpReviewInput
+$ hdfs dfs -mkdir yelpReview
+$ hdfs dfs -put review.json yelpReviewInput
+$ hdfs dfs -put review.json yelpReview
+
+Follow a step-by-step insturction in review.hql
+

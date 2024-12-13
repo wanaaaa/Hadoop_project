@@ -1,0 +1,4 @@
+First , use data base wl1622;
+You may need to remove existing table to create new one. 
+
+Line 1~33-> just run. Table is in the database.
